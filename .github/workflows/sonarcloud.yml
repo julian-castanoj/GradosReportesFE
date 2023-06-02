@@ -19,14 +19,13 @@ jobs:
       # Paso para clonar el repositorio
       - name: Checkout repository
         uses: actions/checkout@v2
-        with:
-          node-version: 16.x
+        
 
       # Paso para configurar Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: 14
+          node-version: 16.x
 
       # Paso para instalar dependencias
       - name: Clean npm cache

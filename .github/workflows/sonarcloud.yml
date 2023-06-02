@@ -1,0 +1,38 @@
+# Nombre del análisis
+name: SonarCloud Analysis
+
+# Configuración del análisis
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  sonarcloud:
+    # Se ejecuta en una máquina Ubuntu
+    runs-on: ubuntu-latest
+
+    steps:
+      # Paso para clonar el repositorio
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      # Paso para configurar Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14
+
+      # Paso para instalar dependencias
+      - name: Install dependencies
+        run: npm ci
+
+      # Paso para ejecutar SonarCloud scanner
+      - name: SonarCloud Scan
+        uses: sonarsource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}

@@ -28,7 +28,7 @@ jobs:
 
       # Paso para instalar dependencias
       - name: Install dependencies
-        run: npm install
+        run: npm i
 
       # Paso para ejecutar SonarCloud scanner
       - name: SonarCloud Scan
